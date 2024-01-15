@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Header = () => {
 	return (
 		<div>
-			<AppBar>
+			<AppBar position="static">
 				<Container maxWidth={"xl"}>
 					<Toolbar>
 						<Typography
