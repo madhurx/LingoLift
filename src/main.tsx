@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
-import { lime, purple } from "@mui/material/colors";
+import { purple } from "@mui/material/colors";
 import "./main.css";
 
 const theme = createTheme({
