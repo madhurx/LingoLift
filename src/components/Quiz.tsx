@@ -52,7 +52,7 @@ const Quiz = () => {
 					fullWidth
 					onClick={nextHandler}
 					disabled={answer === ""}>
-					{count === 2 ? "Submit" : "Next"}
+					{count === 7 ? "Submit" : "Next"}
 				</Button>
 			</div>
 		</Container>
