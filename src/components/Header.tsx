@@ -11,7 +11,7 @@ const Header = () => {
 							variant="h5"
 							mr={"auto"}
 							textTransform={"uppercase"}>
-							LingoLift
+							<a href="/">LingoLift</a>
 						</Typography>
 						<Link to={"/"} className="mx-2 text-white no-underline">
 							Home
