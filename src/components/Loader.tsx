@@ -1,8 +1,10 @@
-import React from 'react'
+import { CircularProgress, Container } from "@mui/material"
 
 const Loader = () => {
   return (
-    <div>Loader</div>
+    <Container maxWidth={"sm"} className="px-10 mt-28 justify-center text-center text-7xl">
+        <CircularProgress/>
+    </Container>
   )
 }
 
