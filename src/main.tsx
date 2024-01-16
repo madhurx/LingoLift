@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
-import { purple } from "@mui/material/colors";
+import { lime, purple } from "@mui/material/colors";
 import "./main.css";
 import { Provider } from "react-redux";
 import { store } from "./redux/store.ts";
