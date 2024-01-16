@@ -1,9 +1,9 @@
 import { Button, Container, Stack, Typography } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import VolumeUpIcon from "@mui/icons-material/VolumeUp";
-import { translateWords } from "../utils/features";
+import { fetchAudio, translateWords } from "../utils/features";
 import { useDispatch, useSelector } from "react-redux";
 import {
 	clearState,
@@ -16,6 +16,9 @@ import Loader from "./Loader";
 const Learning = () => {
 	const params = useSearchParams()[0].get("language") as LangType;
 	const [count, setCount] = useState<number>(0);
+	const [audioSrc, setAudioSrc] = useState<string>("");
+	const audioRef = useRef(null);
+
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const { loading, error, words } = useSelector(
@@ -24,6 +27,17 @@ const Learning = () => {
 
 	const nextHandler = (): void => {
 		setCount((prev) => prev + 1);
+		setAudioSrc("");
+	};
+
+	const audioHandler = async () => {
+		const player: HTMLAudioElement = audioRef.current!;
+		if (player) {
+			player.play();
+		} else {
+			const data = await fetchAudio(words[count]?.word, params);
+			setAudioSrc(data);
+		}
 	};
 
 	useEffect(() => {
@@ -45,6 +59,7 @@ const Learning = () => {
 
 	return (
 		<Container maxWidth={"md"} className="px-4 py-2">
+			{audioSrc && <audio src={audioSrc} autoPlay ref={audioRef}></audio>}
 			<Button
 				onClick={
 					count === 0
@@ -64,7 +79,7 @@ const Learning = () => {
 				<Typography variant={"h4"} color={"grey"}>
 					{words[count]?.meaning}
 				</Typography>
-				<Button className="rounded-3xl">
+				<Button className="rounded-3xl" onClick={audioHandler}>
 					<VolumeUpIcon />
 				</Button>
 			</Stack>
